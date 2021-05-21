@@ -1,3 +1,5 @@
+import { Rotation } from "./rotation";
+
 export class Vec2 {
     x:number;
     y:number;
@@ -26,5 +28,19 @@ export class Vec2 {
     }
     copy(){
         return new Vec2(this.x, this.y);
+    }
+    rotate(angle:Rotation|number){
+        let a = 0;
+        if(typeof angle == "number")
+            a = angle;
+        else 
+            a = angle.angle;
+        let cs = Math.cos(a);
+        let sn = Math.sin(a);
+        let x = this.x;
+        let y = this.y;
+
+        this.x = x * cs - y * sn;
+        this.y = x * sn + y * cs;
     }
 }

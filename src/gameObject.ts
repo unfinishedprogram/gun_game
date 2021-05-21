@@ -1,5 +1,6 @@
 import { Rotation } from "./rotation";
 import { Vec2 } from "./vec2";
+import { World } from "./world";
 
 export abstract class GameObject{
     position: Vec2;
@@ -19,5 +20,8 @@ export abstract class GameObject{
     step(dt:number){
         
     }
-
+    
+    remove(){
+        World.removeObject(this);
+    }
 }

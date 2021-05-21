@@ -10,4 +10,7 @@ export class World{
             Display.drawObject(value);
         })
     }
+    static removeObject(object:GameObject){
+        this.objects.splice(this.objects.indexOf(object), 1);
+    }
 }

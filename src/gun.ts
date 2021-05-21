@@ -1,6 +1,7 @@
 import { AudioController } from "./audioController";
 import { Bullet } from "./bullet";
 import { GameObject } from "./gameObject";
+import { MuzzleFlash } from "./muzzleFlash";
 import { Rotation } from "./rotation";
 import { Vec2 } from "./vec2"
 import { World } from "./world";
@@ -32,7 +33,12 @@ export class Gun extends GameObject{
     shoot(){
         this.velocity.add(this.rotation.unitVec().multiplyScalor(-40));
         this.rvelocity += 0.25;
-        World.objects.push(new Bullet(this.rotation.copy(), this.position.copy(), 50))
+        let loc = this.position.copy()
+        let off = new Vec2(46, -20);
+        off.rotate(this.rotation);
+        loc.add(off);
+        World.objects.push(new Bullet(this.rotation.copy(), loc, 45))
+        World.objects.push(new MuzzleFlash(this.rotation.copy(), loc.copy()))
         AudioController.playSound("gunshot.mp3")
     }
 
