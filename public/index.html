@@ -1,0 +1,68 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="canvas"> </canvas>
+    <style>
+        body{
+            background-color: black;
+            margin: 0px;
+        }
+        canvas{
+            filter: url(#chroma) url(#bloom);
+        }
+    </style>
+<script src="bundle.js"></script> 
+
+    <svg height="0" xmlns="http://www.w3.org/2000/svg">
+        <filter id="chroma">
+            <feColorMatrix type="matrix" 
+                result="red_"             
+                values="4 0 0 0 0
+                        0 0 0 0 0 
+                        0 0 0 0 0 
+                        0 0 0 1 0"/>
+                <feOffset in="red_" dx="2" dy="0" result="red"/>
+                <feColorMatrix type="matrix" 
+                in="SourceGraphic"             
+                result="blue_"             
+                values="0 0 0 0 0
+                        0 3 0 0 0 
+                        0 0 10 0 0 
+                        0 0 0 1 0"/>
+                <feOffset in="blue_" dx="-3" dy="0" result="blue"/>    
+                <feBlend mode="screen" in="red" in2="blue"/>
+        </filter>
+    
+        <filter id="barrel">
+            <feImage xlink:href="normblur.png" result="fadeGrad" />
+
+            <feDisplacementMap id="displacement-map"
+                         xChannelSelector="R"
+                         yChannelSelector="G"
+                         in="SourceGraphic" 
+                         in2="fadeGrad"
+                         result="displacementMap"
+                         color-interpolation-filters="sRGB"
+                         scale="200"/>
+
+            <feComposite operator="in" in2="fadeGrad"></feComposite>
+            
+        </filter>
+
+        <filter id="bloom">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blured" />
+            <feBlend mode="screen" in="SourceGraphic" in2="blured"/>
+            
+        </filter>      
+    </svg>
+
+    
+    <img src="gun.png" alt="gun" id="gun" style="display:none">
+    <img src="bullet.png" alt="gun" id="bullet" style="display:none">
+</body>
+</html>
