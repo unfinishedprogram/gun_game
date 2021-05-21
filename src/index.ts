@@ -14,9 +14,10 @@ window.onload = () => {
     setInterval(() => {
         Display.clear();
         Display.draw();
-        World.step(16);
+        World.step(16); 
         
         Display.viewport.x += ((myGun.position.x - Display.viewport.width/2) - Display.viewport.x)/10;
         Display.viewport.y += ((myGun.position.y - Display.viewport.height/2) - Display.viewport.y)/10;
+
     }, 16);
 }

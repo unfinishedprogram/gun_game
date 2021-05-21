@@ -14,7 +14,7 @@ export class Bullet extends GameObject{
     }
 
     step(dt:number){
-        this.position.add(this.trajectory);
+        this.position.add(this.trajectory.multiplyScalor(16 / dt));
         this.lifetime -= dt;
         if(this.lifetime < 0) this.remove();
     }

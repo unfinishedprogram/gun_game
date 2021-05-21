@@ -35,6 +35,7 @@ export class Vec2 {
             a = angle;
         else 
             a = angle.angle;
+            
         let cs = Math.cos(a);
         let sn = Math.sin(a);
         let x = this.x;
