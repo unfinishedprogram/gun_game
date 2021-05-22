@@ -16,8 +16,8 @@ export abstract class Sprites{
         }
         this.bullet = {
             image: document.getElementById("bullet") as HTMLImageElement,
-            width: 100,
-            height: 64,
+            width: 30,
+            height: 15,
         }
         this.muzzleflash = {
             image: document.getElementById("muzzleflash") as HTMLImageElement,

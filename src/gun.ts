@@ -15,12 +15,12 @@ export class Gun extends GameObject{
     rdamp: number;
     vdamp: number;
 
-    constructor(pos:Vec2, rot:Rotation, user:User) {
-        super(pos, rot, Sprites.gun);
+    constructor(position:Vec2, rotation:Rotation, user:User) {
+        super(position, rotation, Sprites.gun);
+        console.log(Sprites.gun);
 
         this.rvelocity = 0;
         this.velocity = new Vec2(0,0);
-        this.rotation = rot;
 
         this.rdamp = 0.98;
         this.vdamp = 0.97;
