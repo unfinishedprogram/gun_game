@@ -26,7 +26,7 @@ export class Gun extends GameObject{
         this.vdamp = 0.97;
         
         document.addEventListener('keydown', (e) => this.keyPressed(e));
-        document.addEventListener('touched', (t) => this.touched(t as TouchEvent));
+        document.addEventListener('touchstart', (e:TouchEvent) => this.touched(e as TouchEvent), false);
     }
 
     shoot(){
