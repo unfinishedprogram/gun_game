@@ -2,6 +2,7 @@ import { Vec2 } from "./vec2";
 
 export class Rotation{
     angle:number;
+    
     // Takes radian rotation or unit vector
     constructor(rot: Vec2 | number){
         if(typeof rot == "number")

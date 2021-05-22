@@ -1,27 +1,22 @@
 import { Rotation } from "./rotation";
 import { Vec2 } from "./vec2";
 import { World } from "./world";
+import { ISprite } from "./sprites";
 
-export abstract class GameObject{
+export class GameObject{
     position: Vec2;
     rotation: Rotation;
-    sprite: HTMLImageElement;
-    width:number;
-    height:number;
-
-    constructor(pos:Vec2, rot:Rotation, elm:HTMLImageElement, w:number, h:number){
-        this.width = w;
-        this.height = h;
-        this.position = pos;
-        this.rotation = rot;
-        this.sprite = elm;
-    }
-
-    step(dt:number){
-        
+    sprite: ISprite;
+    
+    constructor(position:Vec2, rotation:Rotation, sprite:ISprite){
+        this.position = position;
+        this.rotation = rotation;
+        this.sprite = sprite;
     }
     
-    remove(){
+    step(dt:number){ }
+    
+    remove () {
         World.removeObject(this);
     }
 }

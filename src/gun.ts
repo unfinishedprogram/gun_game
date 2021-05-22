@@ -6,26 +6,22 @@ import { Rotation } from "./rotation";
 import { User } from "./user";
 import { Vec2 } from "./vec2"
 import { World } from "./world";
+import { Sprites } from "./sprites";
+import { Sounds } from "./sounds";
 
 export class Gun extends GameObject{
-    position: Vec2;
     velocity: Vec2;
-    rotation: Rotation;
     rvelocity: number;
-    rdamp:number;
-    vdamp:number;
+    rdamp: number;
+    vdamp: number;
 
-    constructor(pos:Vec2, vel:Vec2, rot:Rotation, user:User){
-        
-        let elm = document.getElementById("gun") as HTMLImageElement;
-        
-        super(pos, rot, elm, 100, 64);
+    constructor(pos:Vec2, rot:Rotation, user:User) {
+        super(pos, rot, Sprites.gun);
 
         this.rvelocity = 0;
-        this.position = pos;
-        this.velocity = vel;
+        this.velocity = new Vec2(0,0);
         this.rotation = rot;
-        
+
         this.rdamp = 0.98;
         this.vdamp = 0.97;
         
@@ -42,7 +38,7 @@ export class Gun extends GameObject{
         loc.add(offset);
         World.objects.push(new Bullet(this.rotation.copy(), loc, 45))
         World.objects.push(new MuzzleFlash(this.rotation.copy(), loc.copy()))
-        AudioController.playSound("gunshot.mp3")
+        AudioController.playSound(Sounds.gunshot)
     }
 
     step(dt:number){
@@ -58,6 +54,9 @@ export class Gun extends GameObject{
             default: break;
         }
     }
+
+
+    // BROKEN FOR NOW TODO FIX ME
     touched(e:TouchEvent){
         this.shoot(); 
     }

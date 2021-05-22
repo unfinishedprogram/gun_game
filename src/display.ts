@@ -26,10 +26,11 @@ export class Display {
     }
 
     static drawObject(object:GameObject){
+        let sprite = object.sprite;
         this.ctx.translate(object.position.x, object.position.y);
         this.ctx.rotate(object.rotation.angle);
 
-        this.ctx.drawImage(object.sprite, -object.width/2, -object.height/2, object.width, object.height);
+        this.ctx.drawImage(sprite.image, -sprite.width/2, -sprite.height/2, sprite.width, sprite.height);
 
         this.ctx.rotate(- object.rotation.angle);
         this.ctx.translate(- object.position.x, - object.position.y);

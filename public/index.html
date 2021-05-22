@@ -21,8 +21,8 @@
         .but{
             width: 5rem;
             position: absolute;
-            top: 1rem;
-            left: 1rem;
+            top: 2rem;
+            left: 2rem;
             color:white;
             filter: url(#chroma1);
         }
@@ -69,22 +69,6 @@
                 <feOffset in="blue_" dx="-4" dy="-3" result="blue"/>    
                 <feBlend mode="screen" in="red" in2="blue"/>
         </filter>
-    
-        <filter id="barrel">
-            <feImage xlink:href="normblur.png" result="fadeGrad" />
-
-            <feDisplacementMap id="displacement-map"
-                         xChannelSelector="R"
-                         yChannelSelector="G"
-                         in="SourceGraphic" 
-                         in2="fadeGrad"
-                         result="displacementMap"
-                         color-interpolation-filters="sRGB"
-                         scale="200"/>
-
-            <feComposite operator="in" in2="fadeGrad"></feComposite>
-            
-        </filter>
 
         <filter id="bloom">
             <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blured" />
@@ -93,8 +77,12 @@
         </filter>      
     </svg>
 
+    <div id="defs" style="display:none;">
+        <img src="media/images/gun.png" alt="gun" id="gun">
+        <img src="media/images/bullet.png" alt="bullet" id="bullet">
+        <img src="media/images/muzzleflash.png" alt="muzzleflash" id="muzzleflash">
+        <audio src="media/audio/gunshot.mp3" id="gunshot">
+    </div>
     
-    <img src="gun.png" alt="gun" id="gun" style="display:none">
-    <img src="bullet.png" alt="gun" id="bullet" style="display:none">
 </body>
 </html>
