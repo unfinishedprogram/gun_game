@@ -1,7 +1,7 @@
-import { Rotation } from "./rotation";
-import { Vec2 } from "./vec2";
-import { World } from "./world";
-import { ISprite } from "./sprites";
+import { Rotation } from "../util/rotation";
+import { Vec2 } from "../util/vec2";
+import { World } from "../world";
+import { ISprite } from "../media/sprites";
 
 export class GameObject{
     position: Vec2;

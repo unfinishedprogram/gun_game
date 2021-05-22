@@ -1,10 +1,10 @@
 import { Display } from "./display";
-import { Gun } from "./gun";
-import { Rotation } from "./rotation";
-import { Sounds } from "./sounds";
-import { Sprites } from "./sprites";
+import { Gun } from "./gameObjects/gun";
+import { Rotation } from "./util/rotation";
+import { Sounds } from "./media/sounds";
+import { Sprites } from "./media/sprites";
 import { User } from "./user";
-import { Vec2 } from "./vec2";
+import { Vec2 } from "./util/vec2";
 import { World } from "./world";
 
 document.addEventListener("DOMContentLoaded", main);

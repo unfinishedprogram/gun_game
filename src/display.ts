@@ -1,4 +1,4 @@
-import { GameObject } from "./gameObject";
+import { GameObject } from "./gameObjects/gameObject";
 
 
 

@@ -1,7 +1,7 @@
 import { GameObject } from "./gameObject";
-import { Rotation } from "./rotation";
-import { Vec2 } from "./vec2";
-import { Sprites } from "./sprites";
+import { Rotation } from "../util/rotation";
+import { Vec2 } from "../util/vec2";
+import { Sprites } from "../media/sprites";
 
 export class MuzzleFlash extends GameObject {
     lifetime:number;

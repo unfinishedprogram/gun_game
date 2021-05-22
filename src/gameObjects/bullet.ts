@@ -1,7 +1,7 @@
 import { GameObject } from "./gameObject";
-import { Rotation } from "./rotation";
-import { Sprites } from "./sprites";
-import { Vec2 } from "./vec2";
+import { Rotation } from "../util/rotation";
+import { Sprites } from "../media/sprites";
+import { Vec2 } from "../util/vec2";
 
 export class Bullet extends GameObject{
     trajectory:Vec2;

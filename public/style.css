@@ -1,0 +1,18 @@
+body {
+  background-color: black;
+  margin: 0px;
+}
+canvas {
+  filter: url(#chroma1) url(#bloom);
+}
+.but {
+  width: 5rem;
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  color: white;
+  filter: url(#chroma1);
+}
+.but:hover {
+  filter: url(#chroma1) url(#bloom);
+}

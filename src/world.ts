@@ -1,5 +1,5 @@
 import { Display } from "./display";
-import { GameObject } from "./gameObject";
+import { GameObject } from "./gameObjects/gameObject";
 
 export class World{
     static objects:GameObject[] = [];

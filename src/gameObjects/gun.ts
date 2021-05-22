@@ -1,13 +1,13 @@
-import { AudioController } from "./audioController";
+import { AudioController } from "../media/audioController";
 import { Bullet } from "./bullet";
 import { GameObject } from "./gameObject";
 import { MuzzleFlash } from "./muzzleFlash";
-import { Rotation } from "./rotation";
-import { User } from "./user";
-import { Vec2 } from "./vec2"
-import { World } from "./world";
-import { Sprites } from "./sprites";
-import { Sounds } from "./sounds";
+import { Rotation } from "../util/rotation";
+import { User } from "../user";
+import { Vec2 } from "../util/vec2"
+import { World } from "../world";
+import { Sprites } from "../media/sprites";
+import { Sounds } from "../media/sounds";
 
 export class Gun extends GameObject{
     velocity: Vec2;
