@@ -21,23 +21,27 @@ export class Vec2 {
         this.x += vec.x;
         this.y += vec.y;
     }
+    
     multiplyScalor(mag:number):Vec2{
         this.x*=mag;
         this.y*=mag;
         return this;
     }
+
     copy(){
         return new Vec2(this.x, this.y);
     }
+
     rotate(angle:Rotation|number){
         let a = 0;
         if(typeof angle == "number")
             a = angle;
         else 
             a = angle.angle;
-            
+
         let cs = Math.cos(a);
         let sn = Math.sin(a);
+
         let x = this.x;
         let y = this.y;
 
