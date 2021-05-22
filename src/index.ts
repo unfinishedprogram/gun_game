@@ -1,13 +1,14 @@
 import { Display } from "./display";
 import { Gun } from "./gun";
 import { Rotation } from "./rotation";
+import { User } from "./user";
 import { Vec2 } from "./vec2";
 import { World } from "./world";
 
 
 window.onload = () => {
-    console.log("Loaded")
-    let myGun = new Gun(new Vec2(0,0), new Vec2(0,0), new Rotation(0));
+    let player1 = new User("player1");
+    let myGun = new Gun(new Vec2(0,0), new Vec2(0,0), new Rotation(0), player1);
     World.objects.push(myGun);
     Display.initalize();
 

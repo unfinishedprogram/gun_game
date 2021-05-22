@@ -7,19 +7,32 @@
 </head>
 <body>
     <canvas id="canvas"> </canvas>
+    <div id="buttons">
+        <img src="icons/gear.svg" alt="" class="but">
+    </div>
     <style>
         body{
             background-color: black;
             margin: 0px;
         }
         canvas{
-            filter: url(#chroma) url(#bloom);
+            filter: url(#chroma1) url(#bloom);
+        }
+        .but{
+            width: 5rem;
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            color:white;
+            filter: url(#chroma1);
+        }
+        .but:hover{
+            filter: url(#chroma1) url(#bloom);
         }
     </style>
 <script src="bundle.js"></script> 
-
     <svg height="0" xmlns="http://www.w3.org/2000/svg">
-        <filter id="chroma">
+        <filter id="chroma1">
             <feColorMatrix type="matrix" 
                 result="red_"             
                 values="4 0 0 0 0
@@ -35,6 +48,25 @@
                         0 0 10 0 0 
                         0 0 0 1 0"/>
                 <feOffset in="blue_" dx="-3" dy="0" result="blue"/>    
+                <feBlend mode="screen" in="red" in2="blue"/>
+        </filter>
+
+        <filter id="chroma2">
+            <feColorMatrix type="matrix" 
+                result="red_"             
+                values="4 0 0 0 0
+                        0 0 0 0 0 
+                        0 0 0 0 0 
+                        0 0 0 1 0"/>
+                <feOffset in="red_" dx="3" dy="2" result="red"/>
+                <feColorMatrix type="matrix" 
+                in="SourceGraphic"             
+                result="blue_"             
+                values="0 0 0 0 0
+                        0 3 0 0 0 
+                        0 0 10 0 0 
+                        0 0 0 1 0"/>
+                <feOffset in="blue_" dx="-4" dy="-3" result="blue"/>    
                 <feBlend mode="screen" in="red" in2="blue"/>
         </filter>
     
