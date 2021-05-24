@@ -7,7 +7,6 @@ export class World{
     static step(dt:number){
         this.objects.forEach((value:GameObject) => {
             value.step(dt);
-            console.log(value);
             Display.drawObject(value);
         })
     }

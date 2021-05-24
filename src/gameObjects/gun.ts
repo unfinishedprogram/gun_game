@@ -3,7 +3,6 @@ import { Bullet } from "./bullet";
 import { GameObject } from "./gameObject";
 import { MuzzleFlash } from "./muzzleFlash";
 import { Rotation } from "../util/rotation";
-import { User } from "../user";
 import { Vec2 } from "../util/vec2"
 import { World } from "../world";
 import { Sprites } from "../media/sprites";
@@ -15,7 +14,7 @@ export class Gun extends GameObject{
     rdamp: number;
     vdamp: number;
 
-    constructor(position:Vec2, rotation:Rotation, user:User) {
+    constructor(position:Vec2, rotation:Rotation) {
         super(position, rotation, Sprites.gun);
         console.log(Sprites.gun);
 

@@ -1,11 +1,23 @@
+:root{
+  font-family: 'Rajdhani', sans-serif;
+}
+
 body {
   background-color: black;
   margin: 0px;
 }
-canvas {
-  filter: url(#chroma1) url(#bloom);
+
+canvas.chroma{
+  filter: url(#chroma1);
 }
-.but {
+canvas.bloom{
+  filter: url(#bloom);
+}
+canvas.bloom.chroma {
+  filter: url(#bloom) url(#chroma1) !important;
+}
+
+.buttton {
   width: 5rem;
   position: absolute;
   top: 2rem;
@@ -13,6 +25,35 @@ canvas {
   color: white;
   filter: url(#chroma1);
 }
-.but:hover {
-  filter: url(#chroma1) url(#bloom);
+
+.buttton:hover {
+  filter: url(#bloom) url(#chroma1) 
+}
+
+.hidden{
+  display: none !important;
+}
+
+.settings_menu{
+  display: block;
+  position: absolute;
+  left: 25vw;
+  top: 25vh;
+  width: 50vw;
+  height: 50vh;
+  border: 2px solid white;
+  border-radius: 1rem;
+  background-color: black;
+}
+
+.settings_menu > *{
+  margin: 20px;
+  color: white;
+  font-size: 1.5rem;
+}
+
+check-box{
+  display: flex;
+  justify-content: space-between;
+  
 }
