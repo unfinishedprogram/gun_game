@@ -14,4 +14,9 @@ export class World{
     static removeObject(object:GameObject){
         this.objects.splice(this.objects.indexOf(object), 1);
     }
+    static getPlayer(id:string){
+        for(let object of this.objects){
+            if(object.id == id) return object;
+        }
+    }
 }
