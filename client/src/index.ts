@@ -5,7 +5,7 @@ import { World } from "./world";
 import { SettingMenu } from "./ui/settingMenu";
 import { Cookies } from "./cookies";
 import { convertGameObjects } from "./networking";
-import { io } from "./socket.io"
+const io = require("socket.io-client");
 
 document.addEventListener("DOMContentLoaded", main);
 
