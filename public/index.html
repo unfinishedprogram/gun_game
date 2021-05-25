@@ -1,21 +1,27 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600&display=swap" rel="stylesheet" defer>
+
     <link rel="shortcut icon" type="image/jpg" href="media/images/favicon.png"/>
-    <title>Document</title>
+
+    <title>Gun Game</title>
 </head>
 <body>
     <canvas id="canvas"> </canvas>
-    <img src="icons/gear.svg" alt="gear icon" class="buttton" id="settings_button">
+    <!-- <img src="icons/gear.svg" alt="gear icon" class="buttton" id="settings_button"> -->
     <script src="bundle.js" defer></script>
+    <div id="nameinstuff">
+        <input type="text" id="name_input">
+        <button id="name_confirm">confirm</button>
+    </div>
 </body>
-
-
 
 <svg height="0" xmlns="http://www.w3.org/2000/svg">
     <filter id="chroma1">
@@ -34,25 +40,6 @@
                     0 0 10 0 0 
                     0 0 0 1 0"/>
             <feOffset in="blue_" dx="-3" dy="0" result="blue"/>    
-            <feBlend mode="screen" in="red" in2="blue"/>
-    </filter>
-
-    <filter id="chroma2">
-        <feColorMatrix type="matrix" 
-            result="red_"             
-            values="4 0 0 0 0
-                    0 0 0 0 0 
-                    0 0 0 0 0 
-                    0 0 0 1 0"/>
-            <feOffset in="red_" dx="3" dy="2" result="red"/>
-            <feColorMatrix type="matrix" 
-            in="SourceGraphic"             
-            result="blue_"             
-            values="0 0 0 0 0
-                    0 3 0 0 0 
-                    0 0 10 0 0 
-                    0 0 0 1 0"/>
-            <feOffset in="blue_" dx="-4" dy="-3" result="blue"/>    
             <feBlend mode="screen" in="red" in2="blue"/>
     </filter>
 

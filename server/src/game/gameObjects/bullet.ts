@@ -8,7 +8,7 @@ export class Bullet extends GameObject{
         super(player, position, rotation);
         this.type = "bullet";
         this.trajectory = rotation.unitVec().multiplyScalor(velocity);
-        this.lifetime = 25;
+        this.lifetime = 60;
     }
     
     step(){

@@ -28,9 +28,6 @@ function main() {
     //     Display.clear();
     //     Display.draw();
     //     World.step(16);
-        
-        
-
     // }, 16);
 
     const socket = io("http://72.11.174.134:3000");
@@ -41,28 +38,37 @@ function main() {
         document.cookie = id.toString();
     });
 
-    socket.on("game_update", (data:any) =>{
-        updateGame(data, id);
-    });
-
     
-
 
     if(id == ""){
         socket.emit("get_id")
         socket.emit("verify", id)
-    }  else
+    } else
         socket.emit("verify", id)
 
-    document.addEventListener('keydown', (e) => {
-        socket.emit("shoot");
-    });
+    socket.on("login", () =>{
+        document.getElementById("name_confirm")!.onclick = () => {
+            let nameInput = document.getElementById("name_input") as HTMLInputElement;
+            let name = nameInput.value
+            nameInput.style.display = "none";
+            document.getElementById("name_confirm")!.style.display = "none";
+            socket.emit("set_name", name || "empty ;(");
+
+            document.addEventListener('keydown', (e) => {
+                socket.emit("shoot");
+            });
+
+            socket.on("game_update", (data:any) =>{
+                updateGame(data, id);
+            });
+        }
+    } ) 
 }
 
 export function updateGame(newData:any, id:string){
     World.objects = convertGameObjects(newData);
     let myGun = World.getPlayer(id)!;
-    if(myGun){
+    if(myGun) {
         Display.viewport.x += ((myGun.position.x - Display.viewport.width/2) - Display.viewport.x)/10;
         Display.viewport.y += ((myGun.position.y - Display.viewport.height/2) - Display.viewport.y)/10;
     }

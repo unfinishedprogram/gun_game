@@ -6,8 +6,10 @@ import { Sprites } from "../media/sprites";
 import { Sounds } from "../media/sounds";
 
 export class Player extends GameObject{
-    constructor(id:string, position:Vec2, rotation:Rotation) {
+    name:string;
+    constructor(id:string, position:Vec2, rotation:Rotation, name:string) {
         super(position, rotation, Sprites.gun);
+        this.name = name;
         this.id = id;
     }
 
@@ -23,6 +25,6 @@ export class Player extends GameObject{
     }
 
     touched(e:TouchEvent){
-        this.shoot(); 
+        // this.shoot(); 
     }
 }

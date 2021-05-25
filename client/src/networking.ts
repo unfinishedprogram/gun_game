@@ -7,7 +7,7 @@ import { Vec2 } from "./util/vec2";
 
 export function convertGameObject(object:any): GameObject|undefined{
     switch(object.type){
-        case "player": return new Player(object.player, new Vec2(object.position.x, object.position.y), new Rotation(object.rotation.angle))
+        case "player": return new Player(object.player, new Vec2(object.position.x, object.position.y), new Rotation(object.rotation.angle), object.name || object.id)
         case "muzzle_flash": return new MuzzleFlash(new Rotation(object.rotation.angle), new Vec2(object.position.x, object.position.y))
         case "bullet": return new Bullet(new Rotation(object.rotation.angle), new Vec2(object.position.x, object.position.y))
         default:break;

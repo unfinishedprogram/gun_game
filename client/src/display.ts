@@ -28,6 +28,13 @@ export class Display {
     static drawObject(object:GameObject){
         let sprite = object.sprite;
         this.ctx.translate(object.position.x, object.position.y);
+
+        if(object.name){
+            this.ctx.font = "30px Arial";
+            this.ctx.textAlign = "center";
+            this.ctx.fillText(object.name, 0, 80);
+        }
+
         this.ctx.rotate(object.rotation.angle);
 
         this.ctx.drawImage(sprite.image, -sprite.width/2, -sprite.height/2, sprite.width, sprite.height);
@@ -68,10 +75,14 @@ export class Display {
 
 
     static resize(){
-        this.width = window.innerWidth;
-        this.height = window.innerHeight;
+        let DPR = window.devicePixelRatio || 1; //Device Pixel Ratio
+
+        this.width = window.innerWidth * DPR;
+        this.height = window.innerHeight * DPR;
+
         this.c.width = this.width
         this.c.height = this.height
+
         this.viewport.width = this.width
         this.viewport.height = this.height
     }

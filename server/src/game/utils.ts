@@ -19,6 +19,9 @@ export class Vec2 {
         this.x += vec.x;
         this.y += vec.y;
     }
+    static distanceBetween(vec1:Vec2, vec2:Vec2){
+        return Math.sqrt((vec1.x - vec2.x)**2 + (vec1.y - vec2.y)**2);
+    }
     
     multiplyScalor(mag:number):Vec2{
         this.x*=mag;

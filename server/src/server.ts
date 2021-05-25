@@ -30,6 +30,8 @@ io.on("connection", function (socket:Socket) {
         gameWorld.addObject(new Player(id, new Vec2(0,0), new Rotation(0)));
         let gunObj = gameWorld.getPlayerObject(id);
 
+        socket.emit("login");
+        
         socket.on('disconnect', () => {
             console.log('user disconnected');
             if(gunObj) gameWorld.removeObject(gunObj);
@@ -42,8 +44,10 @@ io.on("connection", function (socket:Socket) {
         });
 
         socket.on('set_name', (name:string) => {
-            
+            if(gunObj) gunObj.name = name;
         })
+
+
     })
 });
 

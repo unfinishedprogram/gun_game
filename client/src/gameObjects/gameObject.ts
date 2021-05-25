@@ -8,7 +8,7 @@ export class GameObject{
     rotation: Rotation;
     sprite: ISprite;
     id:undefined|string;
-    
+    name:undefined|string;
     constructor(position:Vec2, rotation:Rotation, sprite:ISprite){
         this.position = position;
         this.rotation = rotation;

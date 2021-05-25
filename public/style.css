@@ -5,6 +5,7 @@
 body {
   background-color: black;
   margin: 0px;
+  overflow: hidden;
 }
 
 canvas.chroma{
@@ -15,6 +16,10 @@ canvas.bloom{
 }
 canvas.bloom.chroma {
   filter: url(#bloom) url(#chroma1) !important;
+}
+canvas{
+  width: 100%;
+  height: 100%;
 }
 
 .buttton {
@@ -55,5 +60,23 @@ canvas.bloom.chroma {
 check-box{
   display: flex;
   justify-content: space-between;
-  
+}
+
+#nameinstuff{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 25%;
+  top: 25%;
+  width: 50%;
+  height: 50%;
+  color: red;
+}
+
+#nameinstuff > input{
+  background-color: black;
+  border: 1px solid white;
+  border-radius: 2px;
+  color: white;
 }

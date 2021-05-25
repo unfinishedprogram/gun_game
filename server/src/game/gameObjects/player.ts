@@ -8,6 +8,7 @@ export class Player extends GameObject{
     rvelocity: number;
     rdamp: number;
     vdamp: number;
+    name:undefined|string;
 
     constructor(player:string, position:Vec2, rotation:Rotation) {
         super(player, position, rotation);
@@ -28,7 +29,7 @@ export class Player extends GameObject{
         offset.rotate(this.rotation);
         loc.add(offset);
         return [
-            new Bullet(this.player, this.rotation.copy(), loc, 45), 
+            new Bullet(this.player, this.rotation.copy(), loc, 20), 
             new MuzzleFlash(this.player, this.rotation.copy(), loc.copy())
         ]
     }
