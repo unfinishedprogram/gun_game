@@ -6,13 +6,8 @@ import { Sprites } from "../media/sprites";
 export class MuzzleFlash extends GameObject {
     lifetime:number;
 
-    constructor(rotation:Rotation, position:Vec2){
-        super(position, rotation, Sprites.muzzleflash);
+    constructor(id:string, playerid:string, rotation:Rotation, position:Vec2){
+        super(id, playerid, position, rotation, Sprites.muzzleflash);
         this.lifetime = 50;
-    }
-
-    step(dt:number){
-        this.lifetime -= dt;
-        if(this.lifetime < 0) this.remove();
     }
 }

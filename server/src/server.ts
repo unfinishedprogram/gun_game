@@ -46,8 +46,6 @@ io.on("connection", function (socket:Socket) {
         socket.on('set_name', (name:string) => {
             if(gunObj) gunObj.name = name;
         })
-
-
     })
 });
 

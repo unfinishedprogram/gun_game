@@ -68,6 +68,7 @@ function main() {
 export function updateGame(newData:any, id:string){
     World.objects = convertGameObjects(newData);
     let myGun = World.getPlayer(id)!;
+
     if(myGun) {
         Display.viewport.x += ((myGun.position.x - Display.viewport.width/2) - Display.viewport.x)/10;
         Display.viewport.y += ((myGun.position.y - Display.viewport.height/2) - Display.viewport.y)/10;
@@ -75,7 +76,16 @@ export function updateGame(newData:any, id:string){
     
     Display.clear();
     Display.draw();
-    for(let object of World.objects){
-        Display.drawObject(object);
+
+    for(let object of World.objects.bullets){
+        Display.drawObject(object)
+    }
+    
+    for(let object of World.objects.muzzelflashes){
+        Display.drawObject(object)
+    }
+
+    for(let object of World.objects.players){
+        Display.drawObject(object)
     }
 }
