@@ -12,13 +12,13 @@ export class World{
             if(this.objects[i].step()){
                 delete this.objects[i]
             } else{
-                let objpos = this.objects[i].position;
+                let pos = this.objects[i].position;
 
-                if(objpos.x < this.bounds.x1) objpos.x -= (objpos.x - this.bounds.x1);
-                if(objpos.x > this.bounds.x2) objpos.x -= (objpos.x - this.bounds.x2);
+                if(pos.x < this.bounds.x1) pos.x -= (pos.x - this.bounds.x1)
+                else if(pos.x > this.bounds.x2) pos.x -= (pos.x - this.bounds.x2)
     
-                if(objpos.y < this.bounds.y1) objpos.y -= (objpos.y - this.bounds.y1);
-                if(objpos.y > this.bounds.y2) objpos.y -= (objpos.y - this.bounds.y2);
+                if(pos.y < this.bounds.y1) pos.y -= (pos.y - this.bounds.y1)
+                else if(pos.y > this.bounds.y2) pos.y -= (pos.y - this.bounds.y2)
             }
         }
     }
