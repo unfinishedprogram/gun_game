@@ -1,6 +1,4 @@
-import { Display } from "./display";
 import { Bullet } from "./gameObjects/bullet";
-import { GameObject } from "./gameObjects/gameObject";
 import { MuzzleFlash } from "./gameObjects/muzzleFlash";
 import { Player } from "./gameObjects/player";
 

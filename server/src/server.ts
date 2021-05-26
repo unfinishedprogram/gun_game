@@ -26,25 +26,28 @@ io.on("connection", function (socket:Socket) {
     })
 
     socket.on('verify', (id:string) => {
-        console.log("a user connected widh id: " + id);
-        gameWorld.addObject(new Player(id, new Vec2(0,0), new Rotation(0)));
-        let gunObj = gameWorld.getPlayerObject(id);
-
         socket.emit("login");
-        
+        console.log("a user connected widh id: " + id);
+
         socket.on('disconnect', () => {
             console.log('user disconnected');
-            if(gunObj) gameWorld.removeObject(gunObj);
         });
 
-        socket.on('shoot', () =>{
-            if(gunObj != null){
-                gameWorld.addObjects(gunObj.shoot())
-            }
-        });
 
         socket.on('set_name', (name:string) => {
-            if(gunObj) gunObj.name = name;
+            console.log(id, "logged in with the name:", name);
+            let gunObj = new Player(id, new Vec2(0,0), new Rotation(0))
+            gunObj.name = name;
+            gameWorld.addObject(gunObj);
+
+            socket.on('disconnect', () => {
+                console.log('user disconnected');
+                gameWorld.removeObject(gunObj);
+            });
+
+            socket.on('shoot', () => {
+                gameWorld.addObjects(gunObj.shoot())
+            });
         })
     })
 });

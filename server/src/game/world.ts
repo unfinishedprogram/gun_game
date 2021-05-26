@@ -5,11 +5,21 @@ const {v4:uuid} = require('uuid');
 
 export class World{
     private objects:{[index:string] : GameObject} = {};
+    private bounds = {x1:-5000, y1:-5000, x2:5000, y2:5000};
 
     public step(){
         for(let i in this.objects){
-            if(this.objects[i].step())
-            delete this.objects[i]
+            if(this.objects[i].step()){
+                delete this.objects[i]
+            } else{
+                let objpos = this.objects[i].position;
+
+                if(objpos.x < this.bounds.x1) objpos.x -= (objpos.x - this.bounds.x1);
+                if(objpos.x > this.bounds.x2) objpos.x -= (objpos.x - this.bounds.x2);
+    
+                if(objpos.y < this.bounds.y1) objpos.y -= (objpos.y - this.bounds.y1);
+                if(objpos.y > this.bounds.y2) objpos.y -= (objpos.y - this.bounds.y2);
+            }
         }
     }
 

@@ -5,6 +5,7 @@ import { World } from "./world";
 import { SettingMenu } from "./ui/settingMenu";
 import { Cookies } from "./cookies";
 import { convertGameObjects } from "./networking";
+import { MiniMap } from "./ui/minimap";
 const io = require("socket.io-client");
 
 document.addEventListener("DOMContentLoaded", main);
@@ -23,6 +24,7 @@ function main() {
 
     Sprites.initalize();
     Sounds.initalize();
+    
 
     // setInterval(() => {
     //     Display.clear();
@@ -74,8 +76,11 @@ export function updateGame(newData:any, id:string){
         Display.viewport.y += ((myGun.position.y - Display.viewport.height/2) - Display.viewport.y)/10;
     }
     
+    let mini_map = new MiniMap({x1:50, y1:50, x2:250, y2:250}, {x1:-5000, y1:-5000, x2:5000, y2:5000});
+
     Display.clear();
     Display.draw();
+    
 
     for(let object of World.objects.bullets){
         Display.drawObject(object)
@@ -88,4 +93,6 @@ export function updateGame(newData:any, id:string){
     for(let object of World.objects.players){
         Display.drawObject(object)
     }
+
+    mini_map.drawPlayers(World.objects.players);
 }

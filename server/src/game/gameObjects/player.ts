@@ -17,13 +17,13 @@ export class Player extends GameObject{
         this.rvelocity = 0;
         this.velocity = new Vec2(0,0);
 
-        this.rdamp = 0.98;
+        this.rdamp = 0.995;
         this.vdamp = 0.97;
     }
 
     shoot():GameObject[]{
         this.velocity.add(this.rotation.unitVec().multiplyScalor(-40));
-        this.rvelocity += 0.25;
+        this.rvelocity += 0.1;
         let loc = this.position.copy()
         let offset = new Vec2(46, -20);
         offset.rotate(this.rotation);
