@@ -1,6 +1,4 @@
-import { isArrowFunction } from "typescript";
 import { GameObject } from "./gameObjects/gameObject";
-import { MuzzleFlash } from "./gameObjects/muzzleFlash";
 import { Player } from "./gameObjects/player";
 import { Vec2 } from "./utils";
 const {v4:uuid} = require('uuid');
@@ -82,7 +80,7 @@ export class World{
                 console.log("HIT!")
                 this.removeObjectById(collision.col1);
                 let player = <Player> this.objects[collision.col2];
-                
+
                 player.health -= 50;
                 if(player.health < 0)
                 player.health = 0;
