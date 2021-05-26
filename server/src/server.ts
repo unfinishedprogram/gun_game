@@ -54,6 +54,7 @@ io.on("connection", function (socket:Socket) {
 
 let gameLoop = setInterval(()=>{
     gameWorld.step();
+    gameWorld.handleCollisions(gameWorld.getCollisions())
     io.emit("game_update", gameWorld.getAllObjects());
 }, 16)
 

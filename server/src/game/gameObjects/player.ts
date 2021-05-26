@@ -9,6 +9,7 @@ export class Player extends GameObject{
     rdamp: number;
     vdamp: number;
     name:undefined|string;
+    health:number = 100;
 
     constructor(player:string, position:Vec2, rotation:Rotation) {
         super(player, position, rotation);

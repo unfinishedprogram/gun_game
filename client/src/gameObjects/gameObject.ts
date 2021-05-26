@@ -9,6 +9,7 @@ export class GameObject{
     id:string;
     playerid:string;
     name:undefined|string;
+    health:undefined|number;
 
     constructor(id:string, playerid:string, position:Vec2, rotation:Rotation, sprite:ISprite){
         this.id = id;

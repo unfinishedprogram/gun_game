@@ -35,6 +35,13 @@ export class Display {
             this.ctx.fillText(object.name, 0, 80);
         }
 
+        if(object.health != undefined){
+            this.ctx.fillStyle = "#000"
+            this.ctx.fillRect(-50, 100, 100, 20)
+            this.ctx.fillStyle = "#fff"
+            this.ctx.fillRect(-50, 100, object.health, 20)
+        }
+
         this.ctx.rotate(object.rotation.angle);
 
         this.ctx.drawImage(sprite.image, -sprite.width/2, -sprite.height/2, sprite.width, sprite.height);

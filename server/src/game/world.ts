@@ -1,4 +1,6 @@
+import { isArrowFunction } from "typescript";
 import { GameObject } from "./gameObjects/gameObject";
+import { MuzzleFlash } from "./gameObjects/muzzleFlash";
 import { Player } from "./gameObjects/player";
 import { Vec2 } from "./utils";
 const {v4:uuid} = require('uuid');
@@ -61,14 +63,31 @@ export class World{
         return collisions;
     }
 
-    private collided( a:GameObject,b:GameObject ):boolean{
-        if(a==b) return false;
+    private collided( a:GameObject, b:GameObject ):boolean{
+        if(a===b) return false;
         if(a.type == b.type) return false;
-        if(Vec2.distanceBetween(a.position, b.position) > 2) return false;
+        if(a.player == b.player) return false;
+        if(Vec2.distanceBetween(a.position, b.position) > 50) return false;
         return true;
     }
 
     public getAllObjects(){
         return this.objects;
+    }
+
+    public handleCollisions(collisions: {col1:string, col2:string}[]){
+        for(let collision of collisions){
+            if(this.objects[collision.col1].type == "bullet")
+            if(this.objects[collision.col2].type == "player"){
+                console.log("HIT!")
+                this.removeObjectById(collision.col1);
+                let player = <Player> this.objects[collision.col2];
+                
+                player.health -= 50;
+                if(player.health < 0)
+                player.health = 0;
+                
+            }
+        }
     }
 }
