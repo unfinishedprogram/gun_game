@@ -1,6 +1,5 @@
 import { Vec2, Rotation } from "../utils";
 import { GameObject } from "./gameObject";
-
 export class Bullet extends GameObject{
     trajectory:Vec2;
     lifetime:number;

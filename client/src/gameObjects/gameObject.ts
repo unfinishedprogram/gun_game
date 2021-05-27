@@ -10,6 +10,7 @@ export class GameObject{
     playerid:string;
     name:undefined|string;
     health:undefined|number;
+    lifetime:undefined|number;
 
     constructor(id:string, playerid:string, position:Vec2, rotation:Rotation, sprite:ISprite){
         this.id = id;
@@ -17,5 +18,10 @@ export class GameObject{
         this.position = position;
         this.rotation = rotation;
         this.sprite = sprite;
+    }
+
+    interpolate(from:GameObject, to:GameObject, ratio:number){
+        this.position = Vec2.interpolate(from.position, to.position, ratio);
+        this.rotation = Rotation.interpolate(from.rotation, to.rotation, ratio);
     }
 }

@@ -38,7 +38,7 @@ export class World{
         delete this.objects[object.id];
     }
 
-    public getPlayerObject(player:string): Player | null{
+    public getPlayerObject(player:string): Player | null {
         for(let i in this.objects){
             if(this.objects[i].type == "player")
             if(this.objects[i].player == player)
@@ -69,10 +69,6 @@ export class World{
         return true;
     }
 
-    public getAllObjects(){
-        return this.objects;
-    }
-
     public handleCollisions(collisions: {col1:string, col2:string}[]){
         for(let collision of collisions){
             if(this.objects[collision.col1].type == "bullet")
@@ -87,5 +83,9 @@ export class World{
                 
             }
         }
+    }
+
+    public getObjects(){
+        return this.objects;
     }
 }

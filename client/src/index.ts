@@ -10,27 +10,15 @@ const io = require("socket.io-client");
 
 document.addEventListener("DOMContentLoaded", main);
 
+
+var lastLocalUpdate:number = Date.now();
+var lastServerUpdate:number = Date.now();
+var localtickrate = 16;
+
 function main() {
     Display.initalize();
-
-    // let setting_menu = new SettingMenu(Cookies.loadSettingsFromCookie());
-
-    // setting_menu.classList.add("hidden");
-    // document.body.appendChild(setting_menu);
-
-    // document.getElementById("settings_button")!.onclick = () => {
-    //     setting_menu.classList.toggle("hidden");
-    // }
-
     Sprites.initalize();
     Sounds.initalize();
-    
-
-    // setInterval(() => {
-    //     Display.clear();
-    //     Display.draw();
-    //     World.step(16);
-    // }, 16);
 
     const socket = io("http://72.11.174.134:3000");
     var id = document.cookie
@@ -54,22 +42,34 @@ function main() {
             let name = nameInput.value
             nameInput.style.display = "none";
             document.getElementById("name_confirm")!.style.display = "none";
-            socket.emit("set_name", name || "empty ;(");
+            socket.emit("set_name", name || "Player");
 
             document.addEventListener('keydown', (e) => {
                 socket.emit("shoot");
             });
 
-            socket.on("game_update", (data:any) =>{
-                updateGame(data, id);
+            socket.on("game_update", (data:any, tickrate:number) =>{
+                serverUpdate(data, id, tickrate);
             });
         }
     } ) 
 }
 
-export function updateGame(newData:any, id:string){
-    World.objects = convertGameObjects(newData);
+export function serverUpdate(data:any,playerid:string, tickrate:number){
+    World.serverUpdate(convertGameObjects(data));
+    lastServerUpdate = Date.now();
+
+    setTimeout(() =>{ updateGame(playerid, tickrate) }, 0);
+    setTimeout(() =>{ updateGame(playerid, tickrate) }, 16);
+}
+
+export function updateGame(id:string, tickrate:number){
+    let delta = Date.now() - lastServerUpdate;
+    
+    World.interpolate(delta/tickrate);
     let myGun = World.getPlayer(id)!;
+
+    // console.log(myGun)
 
     if(myGun) {
         Display.viewport.x += ((myGun.position.x - Display.viewport.width/2) - Display.viewport.x)/10;
@@ -81,17 +81,10 @@ export function updateGame(newData:any, id:string){
     Display.clear();
     Display.draw();
     
-
-    for(let object of World.objects.bullets){
-        Display.drawObject(object)
-    }
-    
-    for(let object of World.objects.muzzelflashes){
-        Display.drawObject(object)
-    }
-
-    for(let object of World.objects.players){
-        Display.drawObject(object)
+    for(let type in World.objects){
+        for(let object of World.objects[type as "players"|"bullets"|"muzzelflashes"]){
+            Display.drawObject(object)
+        }
     }
 
     mini_map.drawPlayers(World.objects.players);

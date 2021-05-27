@@ -33,7 +33,6 @@ io.on("connection", function (socket:Socket) {
             console.log('user disconnected');
         });
 
-
         socket.on('set_name', (name:string) => {
             console.log(id, "logged in with the name:", name);
             let gunObj = new Player(id, new Vec2(0,0), new Rotation(0))
@@ -41,7 +40,6 @@ io.on("connection", function (socket:Socket) {
             gameWorld.addObject(gunObj);
 
             socket.on('disconnect', () => {
-                console.log('user disconnected');
                 gameWorld.removeObject(gunObj);
             });
 
@@ -55,8 +53,8 @@ io.on("connection", function (socket:Socket) {
 let gameLoop = setInterval(()=>{
     gameWorld.step();
     gameWorld.handleCollisions(gameWorld.getCollisions())
-    io.emit("game_update", gameWorld.getAllObjects());
-}, 16)
+    io.emit("game_update", gameWorld.getObjects(), 32);
+}, 32)
 
 const server = http.listen(3000, function () {
     console.log("listening on *:3000");

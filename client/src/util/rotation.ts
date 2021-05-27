@@ -21,4 +21,7 @@ export class Rotation{
     copy(){
         return new Rotation(this.angle);
     }
+    static interpolate(from:Rotation, to:Rotation, ratio:number):Rotation{
+        return new Rotation(from.angle + (to.angle - from.angle)*ratio)
+    }
 }

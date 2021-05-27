@@ -6,6 +6,7 @@ export class Vec2 {
     constructor(x:number, y:number){
         this.x = x;
         this.y = y;
+        // console.log("x:", x, "y:", y);
     }
 
     magnitude():number {
@@ -47,5 +48,12 @@ export class Vec2 {
 
         this.x = x * cs - y * sn;
         this.y = x * sn + y * cs;
+    }
+
+    static interpolate(from:Vec2, to:Vec2, ratio:number): Vec2{
+        return new Vec2(
+            from.x + (to.x - from.x)*ratio,
+            from.y + (to.y - from.y)*ratio
+        );
     }
 }
