@@ -17,6 +17,7 @@ function main() {
     Sounds.initalize();
 
     const socket = io("http://72.11.174.134:3000");
+
     var id = document.cookie;
 
     socket.on("set_id", (newID:string) =>{
@@ -30,9 +31,8 @@ function main() {
     } else
         socket.emit("verify", id)
 
-    socket.on("verify", () =>{
+    socket.on("verify", (id:string) =>{
         let login_form = document.getElementById("login_form") as HTMLFormElement;
-        
         login_form.onsubmit = (event) => {
             event.preventDefault();
             let nameInput = document.getElementById("name_input") as HTMLInputElement;

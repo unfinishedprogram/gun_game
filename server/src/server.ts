@@ -26,7 +26,7 @@ io.on("connection", function (socket:Socket) {
     })
 
     socket.on('verify', (id:string) => {
-        socket.emit("verify");
+        socket.emit("verify", id);
         console.log("a user connected widh id: " + id);
 
         socket.on('disconnect', () => {
