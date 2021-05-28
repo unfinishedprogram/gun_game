@@ -1,5 +1,13 @@
 # Gun Game
 
+## Quickstart
+
+The client and server can both be build and the servrer started using:
+
+```bash
+bash buildstart.sh
+```
+
 ## Building
 
 the client and server can both be built using:
