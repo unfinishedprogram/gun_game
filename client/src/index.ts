@@ -28,8 +28,6 @@ function main() {
         document.cookie = id.toString();
     });
 
-    
-
     if(id == ""){
         socket.emit("get_id")
         socket.emit("verify", id)
@@ -40,6 +38,7 @@ function main() {
         document.getElementById("name_confirm")!.onclick = () => {
             let nameInput = document.getElementById("name_input") as HTMLInputElement;
             let name = nameInput.value
+            name = name.substring(0,12);
             nameInput.style.display = "none";
             document.getElementById("name_confirm")!.style.display = "none";
             socket.emit("set_name", name || "Player");
@@ -51,6 +50,10 @@ function main() {
             socket.on("game_update", (data:any, tickrate:number) =>{
                 serverUpdate(data, id, tickrate);
             });
+
+            let clientLoop = setInterval(() =>{ 
+                updateGame(id, 32) 
+            }, 8)
         }
     } ) 
 }
@@ -58,9 +61,6 @@ function main() {
 export function serverUpdate(data:any,playerid:string, tickrate:number){
     World.serverUpdate(convertGameObjects(data));
     lastServerUpdate = Date.now();
-
-    setTimeout(() =>{ updateGame(playerid, tickrate) }, 0);
-    setTimeout(() =>{ updateGame(playerid, tickrate) }, 16);
 }
 
 export function updateGame(id:string, tickrate:number){
@@ -68,8 +68,6 @@ export function updateGame(id:string, tickrate:number){
     
     World.interpolate(delta/tickrate);
     let myGun = World.getPlayer(id)!;
-
-    // console.log(myGun)
 
     if(myGun) {
         Display.viewport.x += ((myGun.position.x - Display.viewport.width/2) - Display.viewport.x)/10;
