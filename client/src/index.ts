@@ -2,18 +2,14 @@ import { Display } from "./display";
 import { Sounds } from "./media/sounds";
 import { Sprites } from "./media/sprites";
 import { World } from "./world";
-import { SettingMenu } from "./ui/settingMenu";
-import { Cookies } from "./cookies";
 import { convertGameObjects } from "./networking";
 import { MiniMap } from "./ui/minimap";
+
 const io = require("socket.io-client");
 
 document.addEventListener("DOMContentLoaded", main);
 
-
-var lastLocalUpdate:number = Date.now();
 var lastServerUpdate:number = Date.now();
-var localtickrate = 16;
 
 function main() {
     Display.initalize();
@@ -21,7 +17,7 @@ function main() {
     Sounds.initalize();
 
     const socket = io("http://72.11.174.134:3000");
-    var id = document.cookie
+    var id = document.cookie;
 
     socket.on("set_id", (newID:string) =>{
         id = newID;
@@ -34,13 +30,17 @@ function main() {
     } else
         socket.emit("verify", id)
 
-    socket.on("login", () =>{
-        document.getElementById("name_confirm")!.onclick = () => {
+    socket.on("verify", () =>{
+        let login_form = document.getElementById("login_form") as HTMLFormElement;
+        
+        login_form.onsubmit = (event) => {
+            event.preventDefault();
             let nameInput = document.getElementById("name_input") as HTMLInputElement;
             let name = nameInput.value
             name = name.substring(0,12);
+            
             nameInput.style.display = "none";
-            document.getElementById("name_confirm")!.style.display = "none";
+            document.getElementById("join_button")!.style.display = "none";
             socket.emit("set_name", name || "Player");
 
             document.addEventListener('keydown', (e) => {

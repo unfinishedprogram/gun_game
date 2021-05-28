@@ -62,7 +62,7 @@ check-box{
   justify-content: space-between;
 }
 
-#nameinstuff{
+#login_form{
   display: flex;
   align-items: center;
   justify-content: center;
@@ -75,7 +75,7 @@ check-box{
   flex-direction: column;
 }
 
-#nameinstuff > input{
+#name_input{
   background-color: black;
   border: 2px solid white;
   border-radius: 12px;
@@ -86,11 +86,8 @@ check-box{
   font-size: 1.25rem;
   text-align: center;
 }
-#nameinstuff > input:focus{
-  outline: none;
-}
 
-#nameinstuff > button{
+#join_button {
   margin-top: 0.5rem;
   border-radius: 100vh;
   height: 2rem;
@@ -100,4 +97,8 @@ check-box{
   height: 2rem;
   padding-left: 4rem;
   padding-right: 4rem;
+}
+
+#name_input:focus{
+  outline: none;
 }
